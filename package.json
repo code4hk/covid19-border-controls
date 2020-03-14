@@ -1,0 +1,40 @@
+{
+  "name": "covid19-border-controls",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/code4hk/covid19-border-controls",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "author": "<lauchunyin@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@material-ui/core": "^4.9.5",
+    "papaparse": "^5.1.1",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-intl": "^2.8.0",
+    "styled-components": "^5.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-0",
+    "@babel/plugin-transform-async-to-generator": "^7.8.3",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-react": "^7.8.3",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^25.1.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-config-standard-react": "^9.2.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "isomorphic-fetch": "^2.1.1",
+    "jest": "^25.1.0",
+    "parcel-bundler": "^1.12.4",
+    "standard": "v14.3.1"
+  }
+}
