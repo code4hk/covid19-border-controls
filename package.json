@@ -1,0 +1,55 @@
+{
+  "name": "covid19-border-controls",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/code4hk/covid19-border-controls",
+  "scripts": {
+    "dev": "parcel demo.html",
+    "build": "parcel build demo.html",
+    "build:locales": "jest build.test.js",
+    "storybook:server": "parcel ./storybook.html --port 1337",
+    "storybook": "start-storybook -p 6006 -- --preview-url=http://localhost:1337/iframe.html",
+    "test": "jest",
+    "storybook:build": "build-storybook -o dist",
+    "storybook:deploy": "storybook-to-ghpages --out=dist"
+  },
+  "author": "<lauchunyin@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@material-ui/core": "^4.9.5",
+    "date-fns": "^2.11.0",
+    "papaparse": "^5.1.1",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-intl": "4.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-0",
+    "@babel/plugin-transform-async-to-generator": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-react": "^7.8.3",
+    "@storybook/addon-actions": "^5.3.17",
+    "@storybook/addon-links": "^5.3.17",
+    "@storybook/addons": "^5.3.17",
+    "@storybook/react": "^5.3.17",
+    "@storybook/storybook-deployer": "^2.8.3",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^25.1.0",
+    "babel-loader": "^8.0.6",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-config-standard-react": "^9.2.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "isomorphic-fetch": "^2.1.1",
+    "jest": "^25.1.0",
+    "parcel-bundler": "^1.12.4",
+    "standard": "v14.3.1"
+  },
+  "jest": {
+    "globalSetup": "./jest.setup.js"
+  }
+}
