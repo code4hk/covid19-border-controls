@@ -1,7 +1,14 @@
 # covid19-border-controls
 
 ## Demo
-Hosted [Github Pages](https://code4hk.github.io/covid19-border-controls/)
+Hosted at [Github Pages](https://code4hk.github.io/covid19-border-controls/)
+
+## License
+MIT
+
+## This project started at g0v.tw
+- [關於設計共筆(中文)](https://hackmd.io/Ul1eq1hoSL28akTlj2aLZA)
+
 
 ## Country, Language Names
 - Generated from https://github.com/umpirsky/country-list/tree/master/data
