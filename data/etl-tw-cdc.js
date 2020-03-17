@@ -32,13 +32,12 @@ export const parseRecords = async (records) => {
         severity = 3
         titleEn = 'Travel Notice Level 3: Warning'
       }
-
       return {
         severity,
         source: '疾病管制署',
         sourceUrl: r.web,
         homeCountryCode: 'TW',
-        targetCountryCode: r.ISO3166,
+        targetCountryCode: r.ISO3166 || 'global',
         type: 'advisory',
         startDate: parseISO(r.effective),
         titleEn,
