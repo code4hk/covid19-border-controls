@@ -22,7 +22,7 @@ const CountryTabsWithLanguageSelector = ({ countryRecords, setLocale }) => {
             <div
               key={l}
               style={{
-                'text-decoration': 'underline',
+                textDecoration: 'underline',
                 cursor: 'pointer'
               }} onClick={() => {
                 setLocale(l)

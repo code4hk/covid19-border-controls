@@ -20,7 +20,7 @@ export default ({ countryRecords }) => {
   }
   return (
     <div className={classes.root}>
-      <AppBar position='static' color='white' elevation={1}>
+      <AppBar position='sticky' color='white' elevation={1}>
         <Tabs
           value={tabIndex}
           onChange={(event, newValue) => {
