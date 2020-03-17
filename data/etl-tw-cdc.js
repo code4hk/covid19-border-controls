@@ -22,13 +22,17 @@ export const parseRecords = async (records) => {
   return records.map(
     r => {
       let severity = 1
+      let titleEn = 'Travel Notice Level 1: Watch'
       // TODO clarify quarantine vs advisory relationship at TW ROC
       if (r.severity_level.match(/第二級/)) {
         severity = 2
+        titleEn = 'Travel Notice Level 2: Alert'
       }
       if (r.severity_level.match(/第三級/)) {
         severity = 3
+        titleEn = 'Travel Notice Level 3: Warning'
       }
+
       return {
         severity,
         source: '疾病管制署',
@@ -37,6 +41,7 @@ export const parseRecords = async (records) => {
         targetCountryCode: r.ISO3166,
         type: 'advisory',
         startDate: parseISO(r.effective),
+        titleEn,
         'titleZh-TW': r.severity_level + ' ' + r.instruction,
         ...r
       }
