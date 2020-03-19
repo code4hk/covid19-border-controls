@@ -254,6 +254,8 @@
     "country.ye": "Yemen",
     "country.zm": "Zambia",
     "country.zw": "Zimbabwe",
+    "borders.control.subject": "Control by {country}",
+    "borders.control.object": "Other countires' control on {country}",
     "country.global": "Global",
     "language.native.zh-TW": "中文",
     "language.native.en": "English",

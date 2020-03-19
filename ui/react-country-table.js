@@ -33,7 +33,7 @@ export const getColor = ({ type }) => {
   }[type] || 'white'
 }
 
-export default ({ rows }) => {
+export default ({ rows, isObject }) => {
   const classes = useStyles()
   if (_.isEmpty(rows)) {
     return <></>

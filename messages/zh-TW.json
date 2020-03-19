@@ -254,6 +254,8 @@
     "country.gu": "關島",
     "country.sd": "蘇丹",
     "country.sr": "蘇利南",
+    "borders.control.subject": "對外管制{country}",
+    "borders.control.object": "對{country}管制",
     "country.global": "全球",
     "language.native.zh-TW": "中文",
     "language.native.en": "English",

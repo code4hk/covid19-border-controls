@@ -11,11 +11,41 @@ import Box from '@material-ui/core/Box'
 import CountryTable from './react-country-table'
 import { FormattedMessage } from 'react-intl'
 
+export const asObjectRecords = (countryRecords) => {
+  const allCountryCodes = _.map(countryRecords, ([countryCode, records]) => countryCode)
+  return _.map(allCountryCodes, countryCode => [countryCode,
+    // not in 1 pass due to GLOBAL
+    _.filter(
+      _.flatMap(countryRecords, ([homeCountryCode, records]) =>
+        _.map(records, ([targetCountryCode, countryData]) => {
+          if (homeCountryCode === countryCode) {
+            return
+          }
+          if (_.includes([countryCode, 'GLOBAL'], targetCountryCode)) {
+            return [homeCountryCode, countryData]
+          }
+        })
+      )
+      , Boolean)
+  ])
+}
+
 export default ({ countryRecords }) => {
   const classes = useStyles()
 
   const [tabIndex, setTabIndex] = React.useState(0)
-  if (_.isEmpty(countryRecords)) {
+
+  const [subTabIndex, setSubTabIndex] = React.useState(0)
+
+  const [currentCountryCode] = countryRecords[tabIndex] || []
+
+  let displayedCountryRecords = countryRecords
+  if (subTabIndex === 1) {
+    displayedCountryRecords = asObjectRecords(countryRecords)
+    console.log('displayedCountryRecords', displayedCountryRecords)
+  }
+
+  if (_.isEmpty(displayedCountryRecords)) {
     return <></>
   }
   return (
@@ -41,10 +71,28 @@ export default ({ countryRecords }) => {
           }
         </Tabs>
       </AppBar>
+      <Tabs
+        value={subTabIndex}
+        onChange={(event, newValue) => {
+          setSubTabIndex(newValue)
+        }}
+        indicatorColor='primary'
+        textColor='primary'
+        variant='scrollable'
+        scrollButtons='auto'
+        aria-label='scrollable auto tabs example'
+      >
+        <Tab
+          label={<FormattedMessage id='borders.control.subject' values={{ country: getCountryLabel(currentCountryCode) }} />} {...a11yProps(0)}
+        />
+        <Tab
+          label={<FormattedMessage id='borders.control.object' values={{ country: getCountryLabel(currentCountryCode) }} />} {...a11yProps(0)}
+        />
+      </Tabs>
       {
-        _.map(countryRecords, ([countryCode, targetCountryRecords], i) => (
+        _.map(displayedCountryRecords, ([countryCode, countryRecords], i) => (
           <TabPanel key={countryCode + '-content'} value={tabIndex} index={i}>
-            <CountryTable rows={targetCountryRecords} />
+            <CountryTable rows={countryRecords} />
           </TabPanel>
         ))
       }

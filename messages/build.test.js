@@ -9,11 +9,16 @@ describe('build locale json', () => {
   test('build', async () => {
     const overrideByLocale = {
       'zh-TW': {
+        'borders.control.subject': '{country}對外管制',
+        'borders.control.object': '對{country}管制',
+        // this is better
         'country.hk': '香港',
         'country.mo': '澳門',
         'country.global': '全球'
       },
       en: {
+        'borders.control.subject': 'Control by {country}',
+        'borders.control.object': 'Other countires\' control on {country}',
         'country.global': 'Global'
       },
       ja: {
@@ -29,10 +34,6 @@ describe('build locale json', () => {
 
         if (locale === 'zh-TW') {
           dataLocale = 'zh_Hant_TW'
-          // this is better
-          // override['country.hk'] = '香港'
-          // override['country.mo'] = '澳門'
-          // override['country.global'] = '全球'
         }
         const countries = await fetch('https://raw.githubusercontent.com/umpirsky/country-list/master/data/' + dataLocale + '/country.json')
         // const languagesNative = await fetch('https://raw.githubusercontent.com/umpirsky/language-list/master/data/' + dataLocale + '/language.json')

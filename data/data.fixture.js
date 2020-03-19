@@ -19,6 +19,14 @@ export const sampleTWRecords = [
     titleEn: 'English Desc 2',
     startDate: '2020/02/07',
     type: 'advisory'
+  },
+  {
+    homeCountryCode: 'TW',
+    targetCountryCode: 'SG',
+    'titleZh-TW': '測試一',
+    titleEn: 'English Desc 1',
+    startDate: '2020/03/05',
+    type: 'advisory'
   }
 ]
 
@@ -45,4 +53,13 @@ export const sampleSGRecords = [
   }
 ]
 
-export const allSampleRecords = sampleTWRecords.concat(sampleSGRecords)
+export const allSampleRecords = sampleTWRecords.concat(sampleSGRecords).concat([
+  {
+    homeCountryCode: 'AU',
+    targetCountryCode: 'GLOBAL',
+    'titleZh-TW': '測試一',
+    titleEn: 'GLOBAL',
+    startDate: '2020/03/05',
+    type: 'advisory'
+  }
+])
