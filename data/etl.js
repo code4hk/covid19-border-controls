@@ -2,7 +2,7 @@ import _ from 'lodash'
 import fetch from 'isomorphic-fetch'
 import twCdcLoader from './etl-tw-cdc'
 import gsheetLoader from './etl-gsheet'
-import { isValid, parse, format } from 'date-fns'
+import { isValid, parse, format, isAfter } from 'date-fns'
 import { defaultLocales } from '../i18n'
 // for sorting
 export const getSeverity = (countryData) => {
@@ -16,6 +16,9 @@ export const getSeverity = (countryData) => {
 export const parseRecord = (r) => {
   if (!isValid(r.startDate)) {
     r.startDate = parse('2020/03/01', 'yyyy/MM/dd', new Date())
+  }
+  if (!isValid(r.endDate)) {
+    r.endDate = parse('2021/12/30', 'yyyy/MM/dd', new Date())
   }
   r.severity = r.severity || getSeverity(r)
   return r
@@ -62,13 +65,19 @@ export const parseViewModelByCountryCodeAndMessages = (records, source) => {
       return _.mapValues(
         byTarget,
         records => {
-          const recordsSantized = _.map(
-            records,
-            parseRecord
-          )
+          const recordsSantized = _.filter(
+            _.map(
+              records,
+              parseRecord
+            ), r => isAfter(r.endDate, new Date()))
+
+          const lastRecord = _.first(_.orderBy(recordsSantized, r => r.startDate, 'desc'))
+          if (!lastRecord) {
+            return null
+          }
 
           const { record, messagesByLocale } = parseRecordWithMessagesByLocale(
-            _.first(_.orderBy(recordsSantized, r => r.startDate, 'desc')),
+            lastRecord,
             source
           )
 

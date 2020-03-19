@@ -40,6 +40,7 @@ export const parseRecords = async (records) => {
         targetCountryCode: r.ISO3166 || 'global',
         type: 'advisory',
         startDate: parseISO(r.effective),
+        endDate: parseISO(r.expires),
         titleEn,
         'titleZh-TW': r.severity_level + ' ' + r.instruction,
         ...r

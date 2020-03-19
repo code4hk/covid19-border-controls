@@ -14,20 +14,21 @@ import { IntlProvider, FormattedMessage, useIntl } from 'react-intl'
 export const parseI18nViewRecords = (viewModelByCountryCode) => {
   // decouple view keys & messages data
   return _.toPairs(_.mapValues(viewModelByCountryCode, (byTarget, countryCode) => {
-    return _.map(byTarget, (record, countryCode) => {
-      const { severity, type } = record
-      return ([countryCode, {
-        severity,
-        // using this hack instead of messages inside Intl for now
-        flag: mapCountryCodeAsEmoji(countryCode),
-        type,
-        source: record.source,
-        sourceUrl: record.sourceUrl,
-        titleI18nKey: record.i18nKey + '.title',
-        descriptionI18nKey: record.i18nKey + '.description'
-      }])
-    }
-    )
+    return _.map(
+      _.pickBy(byTarget, (targetData) => !!targetData),
+      (record, countryCode) => {
+        const { severity, type } = record
+        return ([countryCode, {
+          severity,
+          // using this hack instead of messages inside Intl for now
+          flag: mapCountryCodeAsEmoji(countryCode),
+          type,
+          source: record.source,
+          sourceUrl: record.sourceUrl,
+          titleI18nKey: record.i18nKey + '.title',
+          descriptionI18nKey: record.i18nKey + '.description'
+        }])
+      })
   })
   )
 }

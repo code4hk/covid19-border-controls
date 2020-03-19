@@ -23,7 +23,8 @@ export default async () => {
       return _.merge(
         r,
         {
-          startDate: parse(r.startDate, 'yyyy/MM/dd', new Date())
+          startDate: parse(r.startDate, 'yyyy/MM/dd', new Date()),
+          endDate: parse(r.endDate, 'yyyy/MM/dd', new Date())
         }
       )
     }
